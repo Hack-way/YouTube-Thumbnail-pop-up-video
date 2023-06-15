@@ -1,0 +1,116 @@
+## YouTube Thumbnail pop up video
+
+This code creates a modal window that displays a YouTube video when a thumbnail is clicked. The modal window has a close button that closes the window when clicked.
+
+## Here is a more detailed explanation of the code:
+
+1) The thumbnails variable is an array of all the thumbnail elements on the page.
+2) The modalContainer variable is a reference to the modal-container element on the page.
+3) The videoIframe variable is a reference to the video-iframe element on the page.
+4) The closeButton variable is a reference to the close-button element on the page.
+5) The thumbnails.forEach() loop iterates through the thumbnails array and adds an event listener to each thumbnail element.
+6) The event listener for each thumbnail element is a function that gets the video ID from the dataset.id property of the thumbnail element and then sets the src property of the videoIframe element to the YouTube embed URL for the video ID.
+7) The videoIframe element then displays the YouTube video.
+8) The closeButton event listener sets the src property of the videoIframe element to an empty string and then sets the display property of the modalContainer element to none.
+
+### The final HTML file structure should look like this: The code
+
+CSS code:
+  <style>
+/* A modal-container */
+.video-iframe {
+  max-width: 600px;
+  width: 100%;
+  max-height: 500px;
+  height: 350px;
+}
+.modal-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.video-iframe {
+  margin-right: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: xxx-large;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.thumbnail {
+  cursor: pointer;
+}
+#img {
+  border-radius: 50%;
+}
+  </style>
+
+HTML code:
+<body>
+<a href="https://www.youtube.com/channel/UCpOAe47k4uLjemSBTiAEk2g?sub_confirmation=1" target="_blank"><img id='img' align="right" src="https://yt3.googleusercontent.com/EJfnBM8DfmXQxTHpWNJeE8GHhRxFDmNLZ_b6iXZq6zpfy95h_FM2vTu8iK8uHTLBhdY9rF1jSg=s88-c-k-c0x00ffffff-no-rj" alt="Hackway"></a>
+
+<center><img border="0" height="250" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmmHd2MewCfa-fOSe4ooZLScrr0BdlAt2Nqw19Tnt8qf-A7N0R5XdUEM_CkAIyqPVrvcAhvb71wIGWdUQf_w83WsnsyQpD_Bl09vGhM6OCJTRB3iCa-RH-0hIA8hoGP6AB2YBLqazMKEIGS7v9Nd61HQA4p2xqSOxUEiTr_ujTTOPDHG0kUWdIkDw/s320/Donate%20Us.png" /></center>
+
+<img class="thumbnail" src="https://img.youtube.com/vi/Nvzxm6Xowa4/hqdefault.jpg" data-id="Nvzxm6Xowa4" alt="Video thumbnail">
+<img class="thumbnail" src="https://img.youtube.com/vi/42bRajdHdPc/hqdefault.jpg" data-id="42bRajdHdPc" alt="Video thumbnail">
+<img class="thumbnail" src="https://img.youtube.com/vi/9LSrhz6xoww/hqdefault.jpg" data-id="9LSrhz6xoww" alt="Video thumbnail">
+<img class="thumbnail" src="https://img.youtube.com/vi/ScZEORWIlpg/hqdefault.jpg" data-id="ScZEORWIlpg" alt="Video thumbnail">
+<img class="thumbnail" src="https://img.youtube.com/vi/C14UX5gIqAQ/hqdefault.jpg" data-id="C14UX5gIqAQ" alt="Video thumbnail">
+<img class="thumbnail" src="https://img.youtube.com/vi/93rMv3rbW1I/hqdefault.jpg" data-id="93rMv3rbW1I" alt="Video thumbnail">
+
+<div class="modal-container">
+  <div class="modal-content">
+    <iframe class="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
+    <button class="close-button">&times;</button>
+  </div>
+</div>
+</body>
+
+Javascript code:
+<script>
+const thumbnails = document.querySelectorAll(".thumbnail");
+const modalContainer = document.querySelector(".modal-container");
+const videoIframe = document.querySelector(".video-iframe");
+const closeButton = document.querySelector(".close-button");
+
+thumbnails.forEach((thumbnail) => {
+  thumbnail.addEventListener("click", () => {
+    const videoId = thumbnail.dataset.id;
+    const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+    videoIframe.src = videoUrl;
+    modalContainer.style.display = "flex";
+  });
+});
+
+closeButton.addEventListener("click", () => {
+  videoIframe.src = "";
+  modalContainer.style.display = "none";
+});
+
+</script>
+
+I hope this helps! Let me know if you have any other questions.
